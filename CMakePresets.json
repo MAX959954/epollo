@@ -1,0 +1,44 @@
+{
+  "version": 6,
+  "configurePresets": [
+    {
+      "name": "base",
+      "hidden": true,
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "toolchainFile": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+    },
+    {
+      "name": "windows-debug",
+      "inherits": "base",
+      "generator": "Ninja",
+      "architecture": { "value": "x64", "strategy": "external" },
+      "cacheVariables": { "CMAKE_BUILD_TYPE": "Debug" },
+      "condition": { "type": "equals", "lhs": "${hostSystemName}", "rhs": "Windows" }
+    },
+    {
+      "name": "linux-debug",
+      "inherits": "base",
+      "generator": "Ninja",
+      "cacheVariables": { "CMAKE_BUILD_TYPE": "Debug" },
+      "condition": { "type": "equals", "lhs": "${hostSystemName}", "rhs": "Linux" }
+    },
+    {
+      "name": "linux-asan",
+      "inherits": "linux-debug",
+      "cacheVariables": { "EPOLLO_SANITIZE": "ON" }
+    }
+  ],
+  "buildPresets": [
+    { "name": "windows-debug", "configurePreset": "windows-debug" },
+    { "name": "linux-debug",   "configurePreset": "linux-debug" },
+    { "name": "linux-asan",    "configurePreset": "linux-asan" }
+  ],
+  "testPresets": [
+    { "name": "windows-debug", "configurePreset": "windows-debug",
+      "output": { "outputOnFailure": true } },
+    { "name": "linux-debug",   "configurePreset": "linux-debug",
+      "output": { "outputOnFailure": true } },
+    { "name": "linux-asan",    "configurePreset": "linux-asan",
+      "output": { "outputOnFailure": true } }
+  ]
+}
