@@ -16,6 +16,11 @@
       "condition": { "type": "equals", "lhs": "${hostSystemName}", "rhs": "Windows" }
     },
     {
+      "name": "windows-release",
+      "inherits": "windows-debug",
+      "cacheVariables": { "CMAKE_BUILD_TYPE": "Release" }
+    },
+    {
       "name": "linux-debug",
       "inherits": "base",
       "generator": "Ninja",
@@ -26,19 +31,30 @@
       "name": "linux-asan",
       "inherits": "linux-debug",
       "cacheVariables": { "EPOLLO_SANITIZE": "ON" }
+    },
+    {
+      "name": "linux-release",
+      "inherits": "linux-debug",
+      "cacheVariables": { "CMAKE_BUILD_TYPE": "Release" }
     }
   ],
   "buildPresets": [
-    { "name": "windows-debug", "configurePreset": "windows-debug" },
-    { "name": "linux-debug",   "configurePreset": "linux-debug" },
-    { "name": "linux-asan",    "configurePreset": "linux-asan" }
+    { "name": "windows-debug",   "configurePreset": "windows-debug" },
+    { "name": "windows-release", "configurePreset": "windows-release" },
+    { "name": "linux-debug",     "configurePreset": "linux-debug" },
+    { "name": "linux-asan",      "configurePreset": "linux-asan" },
+    { "name": "linux-release",   "configurePreset": "linux-release" }
   ],
   "testPresets": [
-    { "name": "windows-debug", "configurePreset": "windows-debug",
+    { "name": "windows-debug",   "configurePreset": "windows-debug",
       "output": { "outputOnFailure": true } },
-    { "name": "linux-debug",   "configurePreset": "linux-debug",
+    { "name": "windows-release", "configurePreset": "windows-release",
       "output": { "outputOnFailure": true } },
-    { "name": "linux-asan",    "configurePreset": "linux-asan",
+    { "name": "linux-debug",     "configurePreset": "linux-debug",
+      "output": { "outputOnFailure": true } },
+    { "name": "linux-asan",      "configurePreset": "linux-asan",
+      "output": { "outputOnFailure": true } },
+    { "name": "linux-release",   "configurePreset": "linux-release",
       "output": { "outputOnFailure": true } }
   ]
 }

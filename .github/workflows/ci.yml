@@ -17,6 +17,11 @@ jobs:
             preset: linux-debug
             cc: gcc
             cxx: g++
+          - name: linux-gcc-release
+            os: ubuntu-24.04
+            preset: linux-release
+            cc: gcc
+            cxx: g++
           - name: linux-clang-asan
             os: ubuntu-24.04
             preset: linux-asan

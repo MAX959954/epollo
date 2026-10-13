@@ -1,0 +1,25 @@
+Checks: >
+  bugprone-*,
+  clang-analyzer-*,
+  concurrency-*,
+  cppcoreguidelines-*,
+  misc-*,
+  modernize-*,
+  performance-*,
+  portability-*,
+  readability-*,
+  -bugprone-easily-swappable-parameters,
+  -cppcoreguidelines-avoid-magic-numbers,
+  -cppcoreguidelines-pro-type-reinterpret-cast,
+  -cppcoreguidelines-pro-type-vararg,
+  -misc-include-cleaner,
+  -modernize-use-trailing-return-type,
+  -readability-identifier-length,
+  -readability-magic-numbers
+
+# reinterpret_cast и vararg отключены осознанно: sockaddr-касты и fcntl/ioctl
+# неизбежны в platform/-слое.
+
+WarningsAsErrors: ''
+HeaderFilterRegex: '(include/epollo|src|apps|tests)/'
+FormatStyle: file

@@ -94,7 +94,8 @@ epollo/
 ### Фаза 1. Каркас проекта (≈ 3–4 дня)
 
 - `CMakeLists.txt`: библиотека `epollo_core` + exe `epollo` + `epollo_tests`.
-- Пресеты: `linux-debug`, `linux-asan`, `windows-msvc-debug`, `windows-msvc-release`.
+- Пресеты: `linux-debug`, `linux-asan`, `linux-release`, `windows-debug`, `windows-release`
+  (Windows-пресеты собираются MSVC из Developer PowerShell).
 - Предупреждения: `-Wall -Wextra -Wpedantic -Werror` / `/W4 /WX /permissive-`.
 - `vcpkg.json` с `openssl`, `gtest`.
 - CI-матрица: ubuntu-gcc, ubuntu-clang (+ASan/UBSan), windows-msvc.
